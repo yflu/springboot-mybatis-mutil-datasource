@@ -1,0 +1,76 @@
+body {
+	width: 100%; 
+	height:auto;
+	font-family: Arial,'Microsoft YaHei';
+	_font-family: Arial,'Microsoft YaHei';
+}
+.i_error {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.i-errorbg,.n-errorbg,.m-errorbg,.y-errorbg,.touch-errorbg{
+	margin:132px 0 322px 0;
+	position: relative;
+	height:516px; 
+	display:block;
+	
+}
+.i-errorbg{
+	background: transparent url(../image/blocked_404.png) no-repeat scroll;
+}
+.n-errorbg{
+	background: transparent url(../image/blocked_403.png) no-repeat scroll;
+}
+.m-errorbg{
+	background: transparent url(../image/blocked_500.png) no-repeat scroll;
+}
+.y-errorbg{
+	background: transparent url(../image/blocked_600.png) no-repeat scroll;
+}
+.touch-errorbg{
+	background: transparent url(../image/blocked_rompt.png) no-repeat scroll;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+.tip_continue,.tip_exist,.visit_error{
+	font-size: 24px;
+	line-height: 24px;
+	text-align: center;
+	color: #333;
+}
+.tip_exist{
+	padding-top:300px;
+	line-height: 34px;
+}
+.visit_error{
+	padding-top:200px;
+}
+.tip_continue,.later_continue{
+	font-size: 16px;
+	padding-top: 16px;
+}
+.later_continue{
+	padding-left:380px;
+}
+.btn {
+	margin-top:16px;
+	text-align: center;
+}
+.btn .green {
+	color: #0867c5;
+}
+.btn a {
+	padding: 0 18px;
+	font-size: 16px;
+	line-height: 16px;
+	text-decoration: none;
+	color: #777;
+}
+.btn a + a {
+	border-left: 1px solid #d5dadf;
+}
+.btn a:hover{
+	color: #0867c5;
+}

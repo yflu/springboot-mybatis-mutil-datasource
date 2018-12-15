@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.dao.cluster.EngineCostMapper">
+  <resultMap id="BaseResultMap" type="com.eric.model.cluster.EngineCost">
+    <id column="cost_name" jdbcType="VARCHAR" property="costName" />
+    <id column="engine_name" jdbcType="VARCHAR" property="engineName" />
+    <id column="device_type" jdbcType="INTEGER" property="deviceType" />
+    <result column="cost_value" jdbcType="REAL" property="costValue" />
+    <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cost_name, engine_name, device_type, cost_value, last_update, comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engine_cost
+    where cost_name = #{costName,jdbcType=VARCHAR}
+      and engine_name = #{engineName,jdbcType=VARCHAR}
+      and device_type = #{deviceType,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from engine_cost
+    where cost_name = #{costName,jdbcType=VARCHAR}
+      and engine_name = #{engineName,jdbcType=VARCHAR}
+      and device_type = #{deviceType,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.eric.model.cluster.EngineCost">
+    insert into engine_cost (cost_name, engine_name, device_type, 
+      cost_value, last_update, comment
+      )
+    values (#{costName,jdbcType=VARCHAR}, #{engineName,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
+      #{costValue,jdbcType=REAL}, #{lastUpdate,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eric.model.cluster.EngineCost">
+    insert into engine_cost
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="costName != null">
+        cost_name,
+      </if>
+      <if test="engineName != null">
+        engine_name,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="costValue != null">
+        cost_value,
+      </if>
+      <if test="lastUpdate != null">
+        last_update,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="costName != null">
+        #{costName,jdbcType=VARCHAR},
+      </if>
+      <if test="engineName != null">
+        #{engineName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="costValue != null">
+        #{costValue,jdbcType=REAL},
+      </if>
+      <if test="lastUpdate != null">
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eric.model.cluster.EngineCost">
+    update engine_cost
+    <set>
+      <if test="costValue != null">
+        cost_value = #{costValue,jdbcType=REAL},
+      </if>
+      <if test="lastUpdate != null">
+        last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cost_name = #{costName,jdbcType=VARCHAR}
+      and engine_name = #{engineName,jdbcType=VARCHAR}
+      and device_type = #{deviceType,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eric.model.cluster.EngineCost">
+    update engine_cost
+    set cost_value = #{costValue,jdbcType=REAL},
+      last_update = #{lastUpdate,jdbcType=TIMESTAMP},
+      comment = #{comment,jdbcType=VARCHAR}
+    where cost_name = #{costName,jdbcType=VARCHAR}
+      and engine_name = #{engineName,jdbcType=VARCHAR}
+      and device_type = #{deviceType,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from engine_cost
+  </select>
+  <select id="findByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from engine_cost
+  </select>
+</mapper>

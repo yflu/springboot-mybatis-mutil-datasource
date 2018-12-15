@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        //maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE')
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+war {
+    baseName = 'multipleDataSources'
+    version = '1.0'
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    // 依赖 core 模块
+    compile project(":core")
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
+    //compile('org.springframework.boot:spring-boot-starter-data-solr')
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile('org.springframework.boot:spring-boot-starter-freemarker')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('org.springframework.boot:spring-boot-configuration-processor')
+    //providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    //shiro
+    compile("org.apache.shiro:shiro-core:1.4.0")
+    compile("org.apache.shiro:shiro-web:1.4.0")
+    compile("org.apache.shiro:shiro-spring:1.4.0")
+    //序列化
+    compile files('src/lib/kryo-all-3.jar')
+    //message
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework:spring-messaging")
+    //druid
+    compile group: 'com.alibaba', name: 'druid', version: '1.1.3'
+    //ftp
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
